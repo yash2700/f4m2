@@ -2,7 +2,11 @@ import React, { useState,useEffect } from 'react'
 import "./index.css"
 import Header from "../../components/header"
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {setUsers} from "../../redux/action" 
 function Index() {
+    const dispatch = useDispatch();
+
     useEffect(()=>{
         if(localStorage.getItem("accessToken")!=null){
           navigate("/profile")
@@ -27,7 +31,9 @@ function Index() {
             if(user.fullName!=="" && user.email!=="" && user.password!=="" && confirmPassword!=="" && user.password===confirmPassword){
                 setSuccess("Successfully SignedUp!");
                 localStorage.setItem("user",JSON.stringify(user));
-                localStorage.setItem("accessToken",JSON.stringify(generateAccessToken()))
+                localStorage.setItem("accessToken",JSON.stringify(generateAccessToken()));
+                dispatch(setUsers(user));
+
                 navigate("/profile");
             }
             else{

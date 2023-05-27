@@ -2,11 +2,17 @@ import React, { useEffect } from 'react'
 import "./index.css"
 import { Link, useNavigate } from 'react-router-dom'
 import Header from "../../components/header"
+import { useSelector, useDispatch } from 'react-redux';
+import { clearUser } from '../../redux/action';
 function Index() {
     let navigate=useNavigate()
-   const user=JSON.parse(localStorage.getItem("user"))
+    // const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+   const user=JSON.parse(localStorage.getItem("user"));
+
    function handleLogout(){
     localStorage.clear();
+    dispatch(clearUser());
     navigate("/")
    }
    
