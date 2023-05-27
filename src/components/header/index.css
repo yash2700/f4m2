@@ -1,0 +1,11 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+    font-size: 1.3rem;
+    border-bottom: 1px solid #fff;
+}
+.right{
+    display: flex;
+    gap: 1rem;
+}
